@@ -75,11 +75,30 @@ function Airplane(name) {
           + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
   */
   
- function Car() {
-    
+ function Car(model, milesPerGallon) {
+    this.tank = 0;
+    this.odometer = 0;
+    this.model = model;
+    this.milesPerGallon = milesPerGallon;
   }
-  
-  
+
+  Car.prototype.fill = function(gallons){
+    this.tank = this.tank + gallons;
+  }
+  Car.prototype.drive= function(distance){
+    if(this.tank - distance / this.milesPerGallon <= 0){
+      this.odometer = this.tank * this.milesPerGallon;
+      this.tank = 0;
+      return `I ran out of fuel at ${this.odometer} miles!`;
+    }
+    this.odometer = this.odometer + distance;
+    this.tank = this.tank - distance / this.milesPerGallon;
+  }
+  // const BMW = new Car('X5', 21);
+  // console.log(BMW.drive(100));
+  // BMW.fill(20);
+  // console.log(BMW.drive(100));
+  // console.log(BMW.tank);
   /*
     TASK 3
       - Write a Baby constructor subclassing Person.
