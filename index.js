@@ -106,18 +106,22 @@ function Airplane(name) {
       - Besides the methods on Person.prototype, babies have the ability to `.play()`:
           + Should return a string "Playing with x", x being the favorite toy.
   */
- function Baby() {
-   
+ function Baby(name, age, favoriteToy) {
+   Person.call(this, name, age);
+   this.favoriteToy = favoriteToy;
   }
- 
+ Baby.prototype = Object.create(Person.prototype);
+ Baby.prototype.play = function(){
+   return `Playing with ${this.favoriteToy}`;
+ }
   
   /* 
     TASK 4
     In your own words explain the four principles for the "this" keyword below:
-    1. 
-    2. 
-    3. 
-    4. 
+    1. Implicit binding applies to objects with methods, refers to variables inside the object.
+    2. Window binding happens when this is out of context;
+    3. Explicit binding when we use call and apply functions this keyword is explicity defined
+    4. new binding by using new we are creating a new object and this refers to the constructors attributes
   */
   
   
